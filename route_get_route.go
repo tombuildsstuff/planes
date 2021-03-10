@@ -45,7 +45,6 @@ func getRoute(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	obj := GetRouteResponse{
 		OriginAirportCode:      originCode,
 		OriginAirportName:      fromAirport.FullName,

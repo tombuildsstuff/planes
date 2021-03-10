@@ -1,11 +1,11 @@
 package main
 
 type AirportDetails struct {
-	City string
+	City     string
 	FullName string
 }
 
 type RouteDetails struct {
-	Destination string
+	Destination         string
 	TravelTimeInMinutes int32
 }

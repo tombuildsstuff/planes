@@ -11,9 +11,9 @@ func listRoutes(w http.ResponseWriter, r *http.Request) {
 	for originCode, destinations := range routes {
 		for _, destination := range destinations {
 			out = append(out, RouteSummary{
-				OriginCode: originCode,
+				OriginCode:      originCode,
 				DestinationCode: destination.Destination,
-				Uri: fmt.Sprintf("/route/%s/%s", originCode, destination.Destination),
+				Uri:             fmt.Sprintf("/route/%s/%s", originCode, destination.Destination),
 			})
 		}
 	}
@@ -28,7 +28,7 @@ type ListRoutesResponse struct {
 }
 
 type RouteSummary struct {
-	OriginCode string `json:"origin_code"`
+	OriginCode      string `json:"origin_code"`
 	DestinationCode string `json:"destination_code"`
-	Uri string `json:"uri"`
+	Uri             string `json:"uri"`
 }

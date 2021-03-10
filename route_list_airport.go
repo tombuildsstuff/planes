@@ -15,7 +15,7 @@ func listAirports(w http.ResponseWriter, r *http.Request) {
 				out = append(out, Airport{
 					Name: airport.FullName,
 					Code: code,
-					Uri: fmt.Sprintf("/airports/%s", code),
+					Uri:  fmt.Sprintf("/airports/%s", code),
 				})
 			}
 
@@ -31,5 +31,5 @@ type ListAirportsResponse struct {
 type Airport struct {
 	Name string `json:"name"`
 	Code string `json:"code"`
-	Uri string `json:"uri"`
+	Uri  string `json:"uri"`
 }

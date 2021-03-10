@@ -13,7 +13,7 @@ var airports map[string]AirportDetails
 var routes map[string][]RouteDetails
 
 func main() {
-	airports  = initialAirports()
+	airports = initialAirports()
 	routes = initialRoutes()
 
 	router := mux.NewRouter()
@@ -21,8 +21,8 @@ func main() {
 	http.Handle("/", router)
 
 	server := &http.Server{
-		Handler: router,
-		Addr:    "localhost:2021",
+		Handler:      router,
+		Addr:         "localhost:2021",
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}

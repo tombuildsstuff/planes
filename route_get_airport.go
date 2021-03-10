@@ -25,25 +25,25 @@ func getAirport(w http.ResponseWriter, r *http.Request) {
 	if v, ok := routes[code]; ok {
 		for _, route := range v {
 			flightsTo = append(flightsTo, RouteSummary{
-				OriginCode: code,
+				OriginCode:      code,
 				DestinationCode: route.Destination,
-				Uri: fmt.Sprintf("/routes/%s/%s", code, route.Destination),
+				Uri:             fmt.Sprintf("/routes/%s/%s", code, route.Destination),
 			})
 		}
 	}
 
 	obj := GetAirportResponse{
-		City:     airport.City,
-		Code:     code,
-		FullName: airport.FullName,
+		City:      airport.City,
+		Code:      code,
+		FullName:  airport.FullName,
 		FlightsTo: flightsTo,
 	}
 	serializeJson(obj, w)
 }
 
 type GetAirportResponse struct {
-	City string `json:"city"`
-	Code string `json:"code"`
-	FullName string `json:"full_name"`
+	City      string         `json:"city"`
+	Code      string         `json:"code"`
+	FullName  string         `json:"full_name"`
 	FlightsTo []RouteSummary `json:"flights_to"`
 }
