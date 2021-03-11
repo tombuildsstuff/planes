@@ -1,5 +1,15 @@
 package main
 
+type AirportDetails struct {
+	City     string
+	FullName string
+}
+
+type RouteDetails struct {
+	Destination         string
+	TravelTimeInMinutes int32
+}
+
 func initialAirports() map[string]AirportDetails {
 	return map[string]AirportDetails{
 		"BER": {

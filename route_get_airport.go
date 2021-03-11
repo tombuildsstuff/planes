@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
+
+	"github.com/tombuildsstuff/planes/models"
 )
 
 // getAirport handles /airports/{code}
@@ -21,10 +24,10 @@ func getAirport(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	flightsTo := make([]RouteSummary, 0)
+	flightsTo := make([]models.RouteSummary, 0)
 	if v, ok := routes[code]; ok {
 		for _, route := range v {
-			flightsTo = append(flightsTo, RouteSummary{
+			flightsTo = append(flightsTo, models.RouteSummary{
 				OriginCode:      code,
 				DestinationCode: route.Destination,
 				Uri:             fmt.Sprintf("/routes/%s/%s", code, route.Destination),
@@ -32,18 +35,11 @@ func getAirport(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	obj := GetAirportResponse{
+	obj := models.GetAirportResponse{
 		City:      airport.City,
 		Code:      code,
 		FullName:  airport.FullName,
 		FlightsTo: flightsTo,
 	}
 	serializeJson(obj, w)
-}
-
-type GetAirportResponse struct {
-	City      string         `json:"city"`
-	Code      string         `json:"code"`
-	FullName  string         `json:"full_name"`
-	FlightsTo []RouteSummary `json:"flights_to"`
 }
