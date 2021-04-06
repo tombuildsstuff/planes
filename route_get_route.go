@@ -1,8 +1,11 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
 	"net/http"
+
+	"github.com/gorilla/mux"
+
+	"github.com/tombuildsstuff/planes/models"
 )
 
 // getRoute handles /routes/{origin}/{destination}
@@ -45,7 +48,7 @@ func getRoute(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	obj := GetRouteResponse{
+	obj := models.GetRouteResponse{
 		OriginAirportCode:      originCode,
 		OriginAirportName:      fromAirport.FullName,
 		DestinationAirportCode: destinationCode,
@@ -53,14 +56,4 @@ func getRoute(w http.ResponseWriter, r *http.Request) {
 		FlightLengthInMinutes:  route.TravelTimeInMinutes,
 	}
 	serializeJson(obj, w)
-}
-
-type GetRouteResponse struct {
-	OriginAirportCode string `json:"origin_code"`
-	OriginAirportName string `json:"origin_name"`
-
-	DestinationAirportCode string `json:"destination_code"`
-	DestinationAirportName string `json:"destination_name"`
-
-	FlightLengthInMinutes int32 `json:"flight_length_in_minutes"`
 }
